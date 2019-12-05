@@ -23,9 +23,17 @@ class Character(object):
         print('HA ! ', sf, ' s\'attaque à ', en, ' !')
         en_dmg = randrange(ennemy.min_dmg, ennemy.max_dmg)
         sf_dmg = randrange(self.min_dmg, self.max_dmg)
-        print('Il lui inflige ', sf_dmg, ' points de dégats et en subi ', en_dmg)
-        self.vie -= en_dmg
-        ennemy.vie -= sf_dmg
+        if randrange(0, 100) < ennemy.percent:
+            print(ennemy.nom, 'inflige', en_dmg, 'a', self.nom)
+            self.vie -= en_dmg
+        else:
+            print(ennemy.nom, 'a raté son coup')
+
+        if randrange(0, 100) < self.percent:
+            print(self.nom, 'inflige', sf_dmg, 'a', ennemy.nom)
+            ennemy.vie -= sf_dmg
+        else:
+            print(self.nom, 'a raté son coup')
         
         if  randrange(0,100) < 10:
             print("\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à ", en , " et ", sf, "\n")
@@ -47,8 +55,7 @@ class Character(object):
         
         c1 = sf + ' a encore ' + str(self.vie) + ' points de vie.'
         c2 = en + ' a encore ' + str(ennemy.vie) + ' points de vie.'
-        
-                
+              
         if randrange(0,100) < 5:
             print("\nBOUM ! Samba Sauvage apparait et lance FRAPPE LOURDE il detruit ", en , " et ", sf, "\n")
             chars_comp.remove(ennemy)
@@ -69,7 +76,6 @@ class Character(object):
             print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
             chars_comp.remove(self)
 
-
 class Arme:
 
     def __init__(self, nom, damage_min, damage_max, percent):
@@ -77,7 +83,6 @@ class Arme:
         self.damage_min = damage_min
         self.damage_max = damage_max
         self.percent = percent
-
 
 weapon_list = []
 weapon_list.append(Arme('un pistolet', 10, 14, 80))
