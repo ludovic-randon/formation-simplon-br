@@ -76,7 +76,7 @@ class Character(object):
             chars_comp.remove(ennemy)
             chars_comp.remove(self)
         else:
-            print(c2)
+            print("\n", c2)
             print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
             chars_comp.remove(self)
 
@@ -89,18 +89,19 @@ class Arme:
         self.percent = percent
 
 weapon_list = []
-weapon_list.append(Arme('un pistolet', 10, 14, 80))
-weapon_list.append(Arme('un couteau', 5, 6, 95))
-weapon_list.append(Arme('un M16', 18, 26, 60))
-test_un = choice(weapon_list)
-print(test_un.nom, ' ', test_un.damage_min, ' ', test_un.damage_max)
+weapon_list.append(Arme('un pistolet', 12, 15, 80))
+weapon_list.append(Arme('un couteau', 5, 9, 95))
+weapon_list.append(Arme('un M16', 20, 24, 65))
+weapon_list.append(Arme('un AK47', 24, 30, 50))
+weapon_list.append(Arme('un lance-roquette', 60, 80, 20))
+weapon_list.append(Arme('un sniper', 200, 201, 5))
 
 titres = ['Princesse', 'Petite fée', 'Vagabond', 'Voleur', 'Génie', 'Collabo', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
 
 
 
 vies = []
-for i in range(80, 101):
+for i in range(140, 151):
     vies.append(i)
 
 f = pandas.read_csv('DataJungleFighterz.csv')
