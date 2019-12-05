@@ -33,9 +33,17 @@ class Character(object):
             ennemy.vie -= 20
         
         if  randrange(0,100) < 10:
-            print("\nBOUM ! Rafik apparait et vous piege dans algorhytme inflige 30 de degat à ", en , " et ", sf, "\n")
-            self.vie -= 30
-            ennemy.vie -= 30
+            print("\nBOUM ! Rafik apparait et vous piege dans algorithme et vous force a vous rebattre\n")
+            
+            rafikNb = randrange(1,5)
+            print(rafikNb, "fois !!\n")
+            i = 0
+            while i < rafikNb:
+                print(sf, ' s\'attaque à nouveau à ', en, ' !')
+                print('Il lui inflige ', sf_dmg, ' points de dégats et en subi ', en_dmg, "\n")
+                self.vie -= en_dmg
+                ennemy.vie -= sf_dmg
+                i += 1
         
         c1 = sf + ' a encore ' + str(self.vie) + ' points de vie.'
         c2 = en + ' a encore ' + str(ennemy.vie) + ' points de vie.'
