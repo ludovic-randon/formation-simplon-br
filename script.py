@@ -36,7 +36,7 @@ class Character(object):
             print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
             chars_comp.remove(self)
 
-titres = ['Princesse', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
+titres = ['Princesse', 'Petite fée', 'Vagabond', 'Voleur', 'Génie', 'Collabo', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
 
 forces = []
 for i in range(10, 16):
@@ -59,7 +59,7 @@ for i in new_f:
 
 def main():
     global chars_comp
-    continue_game = input('Appuyez sur entrée pour le combat suivant ou entrez une touche auparavant pour quitter')
+    continue_game = input('Appuyez sur entrée pour le combat suivant ou entrez une touche auparavant pour quitter\n')
     if continue_game != '':
         print('Aurevoir, à bientôt !')
     else:
