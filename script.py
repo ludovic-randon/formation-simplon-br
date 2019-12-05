@@ -19,15 +19,17 @@ class Character(object):
 
     def fight(self, ennemy):
         global chars_comp
+        c1 = print(self.nom, ' a encore ', self.vie, ' points de vie.')
+        c2 = print(ennemy.nom, ' a encore ', ennemy.vie, ' points de vie.')
         print('HA ! ', self.nom, ' s\'attaque à ', ennemy.nom, ' !')
         print('Il lui inflige ', self.force, ' points de dégats et en subi ', ennemy.force)
         self.vie -= ennemy.force
         ennemy.vie -= self.force
         if ennemy.vie > 0 and self.vie > 0:
-            print(self.nom, ' a encore ', self.vie, ' points de vie.')
-            print(ennemy.nom, ' a encore ', ennemy.vie, ' points de vie.')
+            c1
+            c2
         elif ennemy.vie <= 0 and self.vie > 0:
-            print(self.nom, ' a encore ', self.vie, ' points de vie.')
+            c1
             print(ennemy.nom, ' retourne dans sa pokéball ! Aurevoir ', ennemy.nom, ' !')
             chars_comp.remove(ennemy)
         elif (ennemy.vie and self.vie) <= 0:
@@ -35,7 +37,7 @@ class Character(object):
             chars_comp.remove(ennemy)
             chars_comp.remove(self)
         else:
-            print(ennemy.nom, ' a encore ', ennemy.vie, ' points de vie.')
+            c2
             print(self.nom, ' retourne dans sa pokéball ! Aurevoir ', self.nom, ' !')
             chars_comp.remove(self)
 
