@@ -102,7 +102,7 @@ def main():
             chars_comp.append(char_a)
             char_a.fight(char_b)
             print("\n", len(chars_comp), "Fighterz En Vie:\n")
-            chars_comp = sorted(chars_comp, key= lambda char: char.vie)
+            chars_comp = sorted(chars_comp, key= lambda char: char.vie, reverse=True)
             for i in chars_comp:
                 print(i.nom, ' avec ', i.vie, ' points de vie.')
             if len(chars_comp) ==0:
