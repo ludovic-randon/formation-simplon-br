@@ -78,7 +78,7 @@ vies = []
 for i in range(80, 101):
     vies.append(i)
 
-f = pandas.read_csv('liste.txt')
+f = pandas.read_csv('DataJungleFighterz.csv')
 f = f.values.tolist()
 
 new_f = []
