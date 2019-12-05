@@ -71,8 +71,12 @@ p2.fight(p1)
 
 
 races = ['orc', 'poulet', 'tortue']
-forces = [10, 15, 20]
-vies = [45, 50, 40]
+forces = []
+for i in range(10, 16):
+    forces.append(i)
+vies = []
+for i in range(80, 101):
+    vies.append(i)
 
 f = pandas.read_csv('liste.txt')
 f = f.values.tolist()
