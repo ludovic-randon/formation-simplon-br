@@ -3,12 +3,14 @@ import pandas
 from random import *
 
 class Character(object):
-
+    
     def __init__(self, nom, titre, force, vie):
         self.nom = nom
         self.titre = titre
         self.force = force
         self.vie = vie
+        randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a  la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]
+        print(self.titre, self.nom, choice(randomInit))
 
     def fight(self, ennemy):
         global chars_comp
