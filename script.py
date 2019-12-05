@@ -77,6 +77,6 @@ def main():
                 print('Personne n\'a gagné :(')
             main()
         else:
-            print(chars_comp[0].nom, ' a gagné ! BRAVOOOOOOOOOOO !')
+            print(chars_comp[0].titre, ' ', chars_comp[0].nom, ' a gagné ! BRAVOOOOOOOOOOO !')
 
 main()
