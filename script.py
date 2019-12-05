@@ -24,16 +24,20 @@ class Character(object):
         en_dmg = randrange(ennemy.min_dmg, ennemy.max_dmg)
         sf_dmg = randrange(self.min_dmg, self.max_dmg)
         if randrange(0, 100) < ennemy.percent:
-            print(ennemy.nom, 'inflige', en_dmg, 'a', self.nom)
+            print(en, 'inflige', en_dmg, 'a', sf)
             self.vie -= en_dmg
         else:
-            print(ennemy.nom, 'a raté son coup')
+            print(en, 'a raté son coup')
 
         if randrange(0, 100) < self.percent:
-            print(self.nom, 'inflige', sf_dmg, 'a', ennemy.nom)
+            print(sf, 'inflige', sf_dmg, 'a', en)
             ennemy.vie -= sf_dmg
         else:
-            print(self.nom, 'a raté son coup')
+            print(sf, 'a raté son coup')
+        
+        if  randrange(0,100) < 10:
+            print("\n", sf, "trouve un café senseo et restaure 20 hp")
+            self.vie += 20
         
         if  randrange(0,100) < 10:
             print("\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à ", en , " et ", sf, "\n")
@@ -53,7 +57,7 @@ class Character(object):
                 ennemy.vie -= sf_dmg
                 i += 1
         
-        c1 = sf + ' a encore ' + str(self.vie) + ' points de vie.'
+        c1 = "\n" + sf + ' a encore ' + str(self.vie) + ' points de vie.'
         c2 = en + ' a encore ' + str(ennemy.vie) + ' points de vie.'
               
         if randrange(0,100) < 5:
@@ -93,9 +97,7 @@ print(test_un.nom, ' ', test_un.damage_min, ' ', test_un.damage_max)
 
 titres = ['Princesse', 'Petite fée', 'Vagabond', 'Voleur', 'Génie', 'Collabo', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
 
-forces = []
-for i in range(10, 16):
-    forces.append(i)
+
 
 vies = []
 for i in range(80, 101):
