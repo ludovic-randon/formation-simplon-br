@@ -1,9 +1,0 @@
-noms
-Alpha
-Bravo
-Charlie
-Delta
-Echo
-Fox-trot
-Golf
-Hotel
