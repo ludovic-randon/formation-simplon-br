@@ -4,13 +4,14 @@ from random import *
 
 class Character(object):
     
+    randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a  la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]
+        
     def __init__(self, nom, titre, force, vie):
         self.nom = nom
         self.titre = titre
         self.force = force
         self.vie = vie
-        randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a  la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]
-        print(self.titre, self.nom, choice(randomInit))
+        print(self.titre, self.nom, choice(Character.randomInit))
 
     def fight(self, ennemy):
         global chars_comp
@@ -20,9 +21,26 @@ class Character(object):
         print('Il lui inflige ', self.force, ' points de dégats et en subi ', ennemy.force)
         self.vie -= ennemy.force
         ennemy.vie -= self.force
+        
+        if  randrange(0,100) < 10:
+            print("\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à ", en , " et ", sf, "\n")
+            self.vie -= 20
+            ennemy.vie -= 20
+        
+        if  randrange(0,100) < 10:
+            print("\nBOUM ! Rafik apparait et vous piege dans algorhytme inflige 30 de degat à ", en , " et ", sf, "\n")
+            self.vie -= 30
+            ennemy.vie -= 30
+        
         c1 = sf + ' a encore ' + str(self.vie) + ' points de vie.'
         c2 = en + ' a encore ' + str(ennemy.vie) + ' points de vie.'
-        if ennemy.vie > 0 and self.vie > 0:
+        
+                
+        if randrange(0,100) < 5:
+            print("\nBOUM ! Samba Sauvage apparait et lance FRAPPE LOURDE il detruit ", en , " et ", sf, "\n")
+            chars_comp.remove(ennemy)
+            chars_comp.remove(self)
+        elif ennemy.vie > 0 and self.vie > 0:
             print(c1)
             print(c2)
         elif ennemy.vie <= 0 and self.vie > 0:
