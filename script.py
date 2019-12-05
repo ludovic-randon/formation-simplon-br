@@ -4,23 +4,28 @@ from random import *
 
 class Character(object):
     
-    randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a  la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]
+    randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]
         
-    def __init__(self, nom, titre, force, vie):
+    def __init__(self, nom, titre, arme, min_dmg, max_dmg, percent, vie):
         self.nom = nom
         self.titre = titre
-        self.force = force
+        self.arme = arme
+        self.min_dmg = min_dmg
+        self.max_dmg = max_dmg
+        self.percent = percent
         self.vie = vie
-        print(self.titre, self.nom, choice(Character.randomInit))
+        print(self.titre, self.nom, choice(Character.randomInit), 'avec', self.arme)
 
     def fight(self, ennemy):
         global chars_comp
         en = ennemy.titre + ' ' + ennemy.nom
         sf = self.titre + ' ' + self.nom
         print('HA ! ', sf, ' s\'attaque à ', en, ' !')
-        print('Il lui inflige ', self.force, ' points de dégats et en subi ', ennemy.force)
-        self.vie -= ennemy.force
-        ennemy.vie -= self.force
+        en_dmg = randrange(ennemy.min_dmg, ennemy.max_dmg)
+        sf_dmg = randrange(self.min_dmg, self.max_dmg)
+        print('Il lui inflige ', sf_dmg, ' points de dégats et en subi ', en_dmg)
+        self.vie -= en_dmg
+        ennemy.vie -= sf_dmg
         
         if  randrange(0,100) < 10:
             print("\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à ", en , " et ", sf, "\n")
@@ -67,9 +72,9 @@ class Arme:
 
 
 weapon_list = []
-weapon_list.append(Arme('gun', 10, 14, 80))
-weapon_list.append(Arme('knife', 5, 6, 95))
-weapon_list.append(Arme('a_r', 18, 26, 60))
+weapon_list.append(Arme('un pistolet', 10, 14, 80))
+weapon_list.append(Arme('un couteau', 5, 6, 95))
+weapon_list.append(Arme('un M16', 18, 26, 60))
 test_un = choice(weapon_list)
 print(test_un.nom, ' ', test_un.damage_min, ' ', test_un.damage_max)
 
@@ -92,7 +97,8 @@ for i in f:
 
 chars_comp = []
 for i in new_f:
-    chars_comp.append(Character(i, choice(titres), choice(weapon_list).damage_min, choice(vies)))
+    weap = choice(weapon_list)
+    chars_comp.append(Character(i, choice(titres), weap.nom, weap.damage_min, weap.damage_max, weap.percent, choice(vies)))
 
 def main():
     global chars_comp
