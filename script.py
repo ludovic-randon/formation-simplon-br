@@ -23,39 +23,52 @@ class Character(object):
         print('HA ! ', sf, ' s\'attaque à ', en, ' !')
         en_dmg = randrange(ennemy.min_dmg, ennemy.max_dmg)
         sf_dmg = randrange(self.min_dmg, self.max_dmg)
-        if randrange(0, 100) < ennemy.percent:
-            print(en, 'inflige', en_dmg, 'a', sf)
-            self.vie -= en_dmg
-        else:
-            print(en, 'a raté son coup')
-
-        if randrange(0, 100) < self.percent:
-            print(sf, 'inflige', sf_dmg, 'a', en)
-            ennemy.vie -= sf_dmg
-        else:
-            print(sf, 'a raté son coup')
-        
-        if  randrange(0,100) < 10:
-            print("\n", sf, "trouve un café senseo et restaure 20 hp")
+        if self.nom == "Ines" and ennemy.nom == "Hachem" or self.nom == "Hachem" and ennemy.nom == "Ines":
+            print("La famille, on se bat pas !")
+        elif self.nom == "Ludovic" and ennemy.nom == "Dylan" or self.nom == "Dylan" and ennemy.nom == "Ludovic":
+            print("Les développeurs utilisent un hack, leur chance de toucher augmente de 20, leurs vie aussi et font en moyenne 20 dégats en plus")
+            self.min_dmg += 20
+            self.max_dmg += 20
+            self.percent += 20
             self.vie += 20
-        
-        if  randrange(0,100) < 10:
-            print("\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à ", en , " et ", sf, "\n")
-            self.vie -= 20
-            ennemy.vie -= 20
-        
-        if  randrange(0,100) < 10:
-            print("\nBOUM ! Rafik apparait et vous piege dans algorithme et vous force a vous rebattre\n")
-            
-            rafikNb = randrange(1,5)
-            print(rafikNb, "fois !!\n")
-            i = 0
-            while i < rafikNb:
-                print(sf, ' s\'attaque à nouveau à ', en, ' !')
-                print('Il lui inflige ', sf_dmg, ' points de dégats et en subi ', en_dmg, "\n")
+            ennemy.min_dmg += 20
+            ennemy.max_dmg += 20
+            ennemy.percent += 20
+            ennemy.vie += 20
+        else:
+            if randrange(0, 100) < ennemy.percent:
+                print(en, 'inflige', en_dmg, 'a', sf)
                 self.vie -= en_dmg
+            else:
+                print(en, 'a raté son coup')
+                    
+            if randrange(0, 100) < self.percent:
+                print(sf, 'inflige', sf_dmg, 'a', en)
                 ennemy.vie -= sf_dmg
-                i += 1
+            else:
+                print(sf, 'a raté son coup')
+                            
+            if  randrange(0,100) < 10:
+                print("\n", sf, "trouve un café senseo et restaure 20 hp")
+                self.vie += 20
+        
+            if  randrange(0,100) < 10:
+                print("\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à ", en , " et ", sf, "\n")
+                self.vie -= 20
+                ennemy.vie -= 20
+        
+            if  randrange(0,100) < 10:
+                print("\nBOUM ! Rafik apparait et vous piege dans algorithme et vous force a vous rebattre\n")
+            
+                rafikNb = randrange(1,5)
+                print(rafikNb, "fois !!\n")
+                i = 0
+                while i < rafikNb:
+                    print(sf, ' s\'attaque à nouveau à ', en, ' !')
+                    print('Il lui inflige ', sf_dmg, ' points de dégats et en subi ', en_dmg, "\n")
+                    self.vie -= en_dmg
+                    ennemy.vie -= sf_dmg
+                    i += 1
         
         c1 = "\n" + sf + ' a encore ' + str(self.vie) + ' points de vie.'
         c2 = en + ' a encore ' + str(ennemy.vie) + ' points de vie.'
