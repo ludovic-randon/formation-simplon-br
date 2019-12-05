@@ -37,9 +37,11 @@ class Character(object):
             chars_comp.remove(self)
 
 titres = ['Princesse', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
+
 forces = []
 for i in range(10, 16):
     forces.append(i)
+
 vies = []
 for i in range(80, 101):
     vies.append(i)
@@ -70,7 +72,7 @@ def main():
             print("\n", len(chars_comp), "Fighterz En Vie:\n")
             chars_comp = sorted(chars_comp, key= lambda char: char.vie, reverse=True)
             for i in chars_comp:
-                print(i.nom, ' avec ', i.vie, ' points de vie.')
+                print(i.titre, i.nom, ' avec ', i.vie, ' points de vie.')
             if len(chars_comp) ==0:
                 print('Personne n\'a gagné :(')
             main()
