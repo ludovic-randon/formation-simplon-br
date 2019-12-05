@@ -101,12 +101,14 @@ def main():
             char_b = choice(chars_comp)
             chars_comp.append(char_a)
             char_a.fight(char_b)
+            print("\n", len(chars_comp), "Fighterz En Vie:\n")
             for i in chars_comp:
-                print(i.nom)
+                print(i.nom, 'avec ', i.vie, ' points de vie.')
             if len(chars_comp) ==0:
                 print('Personne n\'a gagné :(')
             main()
         else:
             print(chars_comp[0].nom, ' a gagné ! BRAVOOOOOOOOOOO !')
+
 
 main()
