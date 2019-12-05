@@ -38,6 +38,23 @@ class Character(object):
             print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
             chars_comp.remove(self)
 
+
+class Arme:
+
+    def __init__(self, nom, damage_min, damage_max, percent):
+        self.nom = nom
+        self.damage_min = damage_min
+        self.damage_max = damage_max
+        self.percent = percent
+
+
+weapon_list = []
+weapon_list.append(Arme('gun', 10, 14, 80))
+weapon_list.append(Arme('knife', 5, 6, 95))
+weapon_list.append(Arme('a_r', 18, 26, 60))
+test_un = choice(weapon_list)
+print(test_un.nom, ' ', test_un.damage_min, ' ', test_un.damage_max)
+
 titres = ['Princesse', 'Petite fée', 'Vagabond', 'Voleur', 'Génie', 'Collabo', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
 
 forces = []
