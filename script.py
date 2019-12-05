@@ -36,7 +36,7 @@ class Character(object):
         # Conditions pour verifier si le personnage est encore en vie
         if ennemy.vie > 0 and self.vie > 0:
             print(self.nom, ' a encore ', self.vie, ' points de vie.')
-            print(ennemy.nom, ' a encore ', str(ennemy.vie), ' points de vie.')
+            print(ennemy.nom, ' a encore ', ennemy.vie, ' points de vie.')
         elif ennemy.vie <= 0 and self.vie > 0:
             print(self.nom, ' a encore ', self.vie, ' points de vie.')
             print(ennemy.nom, ' retourne dans sa pokéball ! Aurevoir ', ennemy.nom, ' !')
@@ -101,6 +101,10 @@ def main():
             char_b = choice(chars_comp)
             chars_comp.append(char_a)
             char_a.fight(char_b)
+            for i in chars_comp:
+                print(i.nom)
+            if len(chars_comp) ==0:
+                print('Personne n\'a gagné :(')
             main()
         else:
             print(chars_comp[0].nom, ' a gagné ! BRAVOOOOOOOOOOO !')
