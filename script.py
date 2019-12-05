@@ -14,17 +14,17 @@ class Character(object):
         global chars_comp
         en = ennemy.titre + ' ' + ennemy.nom
         sf = self.titre + ' ' + self.nom
-        c1 = print(sf, ' a encore ', self.vie, ' points de vie.')
-        c2 = print(en, ' a encore ', ennemy.vie, ' points de vie.')
+        c1 = sf + ' a encore ' + str(self.vie) + ' points de vie.'
+        c2 = en + ' a encore ' + str(ennemy.vie) + ' points de vie.'
         print('HA ! ', sf, ' s\'attaque à ', en, ' !')
         print('Il lui inflige ', self.force, ' points de dégats et en subi ', ennemy.force)
         self.vie -= ennemy.force
         ennemy.vie -= self.force
         if ennemy.vie > 0 and self.vie > 0:
-            c1
-            c2
+            print(c1)
+            print(c2)
         elif ennemy.vie <= 0 and self.vie > 0:
-            c1
+            print(c1)
             print(en, ' retourne dans sa pokéball ! Aurevoir ', en, ' !')
             chars_comp.remove(ennemy)
         elif (ennemy.vie and self.vie) <= 0:
@@ -32,7 +32,7 @@ class Character(object):
             chars_comp.remove(ennemy)
             chars_comp.remove(self)
         else:
-            c2
+            print(c2)
             print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
             chars_comp.remove(self)
 
