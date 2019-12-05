@@ -4,24 +4,20 @@ from random import *
 
 class Character(object):
 
-    def __init__(self, nom, race, force, vie):
+    def __init__(self, nom, titre, force, vie):
         self.nom = nom
-        self._race = race
+        self.titre = titre
         self.force = force
         self.vie = vie
         print('Un nouveau personnage est né !')
-    
-    def _get_race(self):
-        print(self.nom, ' est de la race des ', self._race)
-        pass
-    
-    race = property(_get_race)
 
     def fight(self, ennemy):
         global chars_comp
-        c1 = print(self.nom, ' a encore ', self.vie, ' points de vie.')
-        c2 = print(ennemy.nom, ' a encore ', ennemy.vie, ' points de vie.')
-        print('HA ! ', self.nom, ' s\'attaque à ', ennemy.nom, ' !')
+        en = ennemy.titre + ' ' + ennemy.nom
+        sf = self.titre + ' ' + self.nom
+        c1 = print(sf, ' a encore ', self.vie, ' points de vie.')
+        c2 = print(en, ' a encore ', ennemy.vie, ' points de vie.')
+        print('HA ! ', sf, ' s\'attaque à ', en, ' !')
         print('Il lui inflige ', self.force, ' points de dégats et en subi ', ennemy.force)
         self.vie -= ennemy.force
         ennemy.vie -= self.force
@@ -30,18 +26,18 @@ class Character(object):
             c2
         elif ennemy.vie <= 0 and self.vie > 0:
             c1
-            print(ennemy.nom, ' retourne dans sa pokéball ! Aurevoir ', ennemy.nom, ' !')
+            print(en, ' retourne dans sa pokéball ! Aurevoir ', en, ' !')
             chars_comp.remove(ennemy)
         elif (ennemy.vie and self.vie) <= 0:
-            print('Doublette ! ', ennemy.nom, ' et ', self.nom, ' se sont entretués !')
+            print('Doublette ! ', en, ' et ', sf, ' se sont entretués !')
             chars_comp.remove(ennemy)
             chars_comp.remove(self)
         else:
             c2
-            print(self.nom, ' retourne dans sa pokéball ! Aurevoir ', self.nom, ' !')
+            print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
             chars_comp.remove(self)
 
-races = ['orc', 'poulet', 'tortue']
+titres = ['orc', 'poulet', 'tortue']
 forces = []
 for i in range(10, 16):
     forces.append(i)
@@ -58,7 +54,7 @@ for i in f:
 
 chars_comp = []
 for i in new_f:
-    chars_comp.append(Character(i, choice(races), choice(forces), choice(vies)))
+    chars_comp.append(Character(i, choice(titres), choice(forces), choice(vies)))
 
 def main():
     global chars_comp
