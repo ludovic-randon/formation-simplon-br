@@ -61,7 +61,7 @@ for i in new_f:
 
 def main():
     global chars_comp
-    continue_game = input('Appuyez sur entrée pour le combat suivant ou entrez une touche auparavant pour quitter\n')
+    continue_game = input('\nAppuyez sur entrée pour le combat suivant ou entrez une touche auparavant pour quitter\n')
     if continue_game != '':
         print('Aurevoir, à bientôt !')
     else:
