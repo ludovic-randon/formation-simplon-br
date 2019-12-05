@@ -9,7 +9,6 @@ class Character(object):
         self.titre = titre
         self.force = force
         self.vie = vie
-        print('Un nouveau personnage est né !')
 
     def fight(self, ennemy):
         global chars_comp
@@ -37,7 +36,7 @@ class Character(object):
             print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
             chars_comp.remove(self)
 
-titres = ['orc', 'poulet', 'tortue']
+titres = ['Princesse', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
 forces = []
 for i in range(10, 16):
     forces.append(i)
