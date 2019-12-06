@@ -3,9 +3,9 @@ import pandas
 from random import *
 
 class Character(object):
-    
-    randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]
-        
+
+    randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]    
+
     def __init__(self, nom, titre, arme, min_dmg, max_dmg, percent, vie):
         self.nom = nom
         self.titre = titre
@@ -14,13 +14,16 @@ class Character(object):
         self.max_dmg = max_dmg
         self.percent = percent
         self.vie = vie
-        print(self.titre, self.nom, choice(Character.randomInit), 'avec', self.arme)
+        print('{} {} {} avec {} !'.format(self.titre, self.nom, choice(Character.randomInit), self.arme))
+
+    def __repr__(self):
+        return "{} {} avec {} points de vie.".format(self.titre, self.nom, self.vie)
 
     def fight(self, ennemy):
         global chars_comp
-        en = ennemy.titre + ' ' + ennemy.nom
-        sf = self.titre + ' ' + self.nom
-        print('HA ! ', sf, ' s\'attaque à ', en, ' !')
+        en = '{} {}'.format(ennemy.titre, ennemy.nom)
+        sf = '{} {}'.format(self.titre, self.nom)
+        print('HA ! {} s\'attaque à {} !'.format(sf, en))
         en_dmg = randrange(ennemy.min_dmg, ennemy.max_dmg)
         sf_dmg = randrange(self.min_dmg, self.max_dmg)
         if self.nom == "Ines" and ennemy.nom == "Hachem" or self.nom == "Hachem" and ennemy.nom == "Ines":
@@ -37,42 +40,35 @@ class Character(object):
             ennemy.vie += 20
         else:
             if randrange(0, 100) < ennemy.percent:
-                print(en, 'inflige', en_dmg, 'a', sf)
+                print('{} inflige {} a {}'.format(en, en_dmg, sf))
                 self.vie -= en_dmg
             else:
-                print(en, 'a raté son coup')
-                    
+                print('{} a raté son coup'.format(en))                    
             if randrange(0, 100) < self.percent:
-                print(sf, 'inflige', sf_dmg, 'a', en)
+                print('{} inflige {} a {}'.format(sf, sf_dmg, en))
                 ennemy.vie -= sf_dmg
             else:
-                print(sf, 'a raté son coup')
-                            
+                print('{} a raté son coup'.format(sf))                            
             if  randrange(0,100) < 10:
-                print("\n", sf, "trouve un café senseo et restaure 20 hp")
-                self.vie += 20
-        
+                print('\n{} trouve un café senseo et restaure 20 hp'.format(sf))
+                self.vie += 20        
             if  randrange(0,100) < 10:
-                print("\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à ", en , " et ", sf, "\n")
+                print('\nBOUM ! Samba Sauvage apparait et lance GAOUUU il inflige 20 de degat à {} et {}\n'.format(en, sf))
                 self.vie -= 20
-                ennemy.vie -= 20
-        
+                ennemy.vie -= 20        
             if  randrange(0,100) < 10:
                 print("\nBOUM ! Rafik apparait et vous piege dans algorithme et vous force a vous rebattre\n")
-            
                 rafikNb = randrange(1,5)
-                print(rafikNb, "fois !!\n")
+                print('{} fois !!\n'.format(rafikNb))
                 i = 0
                 while i < rafikNb:
-                    print(sf, ' s\'attaque à nouveau à ', en, ' !')
-                    print('Il lui inflige ', sf_dmg, ' points de dégats et en subi ', en_dmg, "\n")
+                    print('{} s\'attaque à nouveau à {} !'.format(sf, en))
+                    print('Il lui inflige {} points de dégats et en subi {}\n'.format(sf_dmg, en_dmg))
                     self.vie -= en_dmg
                     ennemy.vie -= sf_dmg
                     i += 1
-        
-        c1 = "\n" + sf + ' a encore ' + str(self.vie) + ' points de vie.'
-        c2 = en + ' a encore ' + str(ennemy.vie) + ' points de vie.'
-              
+        c1 = '\n{} a encore {} points de vie.'.format(sf, self.vie)
+        c2 = '{} a encore {} points de vie.'.format(en, ennemy.vie)          
         if randrange(0,100) < 5:
             print("\nBOUM ! Samba Sauvage apparait et lance FRAPPE LOURDE il detruit ", en , " et ", sf, "\n")
             chars_comp.remove(ennemy)
@@ -82,15 +78,15 @@ class Character(object):
             print(c2)
         elif ennemy.vie <= 0 and self.vie > 0:
             print(c1)
-            print(en, ' retourne dans sa pokéball ! Aurevoir ', en, ' !')
+            print('{} retourne dans sa pokéball ! Aurevoir {} !'.format(en, en))
             chars_comp.remove(ennemy)
         elif ennemy.vie <= 0 and self.vie <= 0:
-            print('Doublette ! ', en, ' et ', sf, ' se sont entretués !')
+            print('Doublette ! {} et {} se sont entretués !'.format(en, sf))
             chars_comp.remove(ennemy)
             chars_comp.remove(self)
         else:
             print("\n", c2)
-            print(sf, ' retourne dans sa pokéball ! Aurevoir ', sf, ' !')
+            print('{} retourne dans sa pokéball ! Aurevoir {} !'.format(sf, sf))
             chars_comp.remove(self)
 
 class Arme:
@@ -111,8 +107,6 @@ weapon_list.append(Arme('un sniper', 200, 201, 5))
 
 titres = ['Princesse', 'Petite fée', 'Vagabond', 'Voleur', 'Génie', 'Collabo', 'Dragon', 'Tyran', 'Dictateur', 'Leader', 'Sa majesté', 'Chef', 'Sauvage', 'Roi de la jungle', 'Chasseur', 'Kangourou']
 
-
-
 vies = []
 for i in range(140, 151):
     vies.append(i)
@@ -129,29 +123,46 @@ for i in new_f:
     weap = choice(weapon_list)
     chars_comp.append(Character(i, choice(titres), weap.nom, weap.damage_min, weap.damage_max, weap.percent, choice(vies)))
 
-def main():
+def reset_game():
+    global chars_comp
+    chars_comp = []
+    for i in new_f:
+        weap = choice(weapon_list)
+        chars_comp.append(Character(i, choice(titres), weap.nom, weap.damage_min, weap.damage_max, weap.percent, choice(vies)))
+
+def end_game():
+    new_game = input('New game ? Y/N :')
+    if new_game.lower() == 'y':
+        reset_game()
+        game()
+    elif new_game.lower() == 'n':
+        return '\nAurevoir ! Merci d\'avoir joué !'
+    else:
+        end_game()
+
+def game():
     global chars_comp
     continue_game = input('\nAppuyez sur entrée pour le combat suivant ou entrez une touche auparavant pour quitter\n')
-    if continue_game != '':
-        print('Aurevoir, à bientôt !')
-    else:
+    if continue_game == '':
         if len(chars_comp) > 1:
             char_a = choice(chars_comp)
             chars_comp.remove(char_a)
             char_b = choice(chars_comp)
             chars_comp.append(char_a)
             char_a.fight(char_b)
-            print("\n", len(chars_comp), "Fighterz En Vie:\n")
+            print("\n {} Fighterz En Vie:\n".format(len(chars_comp)))
             chars_comp = sorted(chars_comp, key= lambda char: char.vie, reverse=True)
             for i in chars_comp:
-                print(i.titre, i.nom, ' avec ', i.vie, ' points de vie.')
+                print(i)
             if len(chars_comp) == 0:
                 print('Personne n\'a gagné :(')
-                pass
+                end_game()
             elif len(chars_comp) == 1:
-                print('\n', chars_comp[0].titre, ' ', chars_comp[0].nom, ' a gagné ! BRAVOOOOOOOOOOO !')
-                pass
+                winner = chars_comp[0]
+                print('\n{} {} a gagné ! BRAVOOOOOOOOOOO !'.format(winner.titre, winner.nom))
+                end_game()
             else:
-                main()
-
-main()
+                game()
+    else:
+        return 'Aurevoir, merci et à bientôt !'
+game()
