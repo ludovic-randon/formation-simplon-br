@@ -5,7 +5,6 @@ from random import *
 class Character(object):
 
     randomInit = ["descend de son carrosse", "est sortie de sa capsule", "sort de terre", "tombe du ciel",  "est envoyé par les dieux", "arrive en moonwalk", "s'est perdu #Denis", "prend les armes", "déménage", "enleve sa cape d'invisibilité", "recherche à manger", "pose son café", "releve ses manches", "se réveille", "est push sur le terrain", "débarque à dos de licorne", "veut tout casser", "est pret à en decoudre", "a la grippe", "est pret pour le stand up", "rassemble ses chakras", "sort son chéquier"]    
-
     def __init__(self, nom, titre, arme, min_dmg, max_dmg, percent, vie):
         self.nom = nom
         self.titre = titre
@@ -17,7 +16,10 @@ class Character(object):
         print('{} {} {} avec {} !'.format(self.titre, self.nom, choice(Character.randomInit), self.arme))
 
     def __repr__(self):
-        return "{} {} avec {} points de vie.".format(self.titre, self.nom, self.vie)
+        return '{} {} avec {} points de vie.'.format(self.titre, self.nom, self.vie)
+
+    def full_show(self):
+        return 'Character: nom({}), titre({}), arme({}), dégats min({}), dégats max({}), pourcentage de touche({}), points de vie({})'.format(self.nom, self.titre, self.arme, self.min_dmg, self.max_dmg, self.percent, self.vie)
 
     def fight(self, ennemy):
         global chars_comp
@@ -163,6 +165,14 @@ def game():
                 end_game()
             else:
                 game()
+    elif continue_game == 'showall':
+        for i in chars_comp:
+            print(i.full_show())
+        game()
+    elif continue_game == 'hack':
+        hacking = input('Commande a executer : \n')
+        exec(hacking)
+        game()
     else:
-        return 'Aurevoir, merci et à bientôt !'
+        return print('Aurevoir, merci et à bientôt !')
 game()
